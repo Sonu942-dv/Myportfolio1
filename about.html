@@ -1,0 +1,208 @@
+<div id="preloader">
+  <div class="loader-wrap" role="status" aria-live="polite" aria-busy="true">
+    <svg class="spinner" viewBox="0 0 50 50" aria-hidden="true">
+      <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    </svg>
+    <div class="loader-text">Looding...</div>
+  </div>
+</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sonu — Web Developer</title>
+  <meta name="description" content="Portfolio — Frontend & C++ Web Developer" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#7c3aed;
+      --glass: rgba(255,255,255,0.04);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071026);color:#e6eef8}
+    a{color:inherit;text-decoration:none}
+
+    /* Container */
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    /* Header / Nav */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#4f46e5);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav ul{display:flex;gap:18px;align-items:center;margin:0;padding:0;list-style:none}
+    .btn{padding:8px 14px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-top:28px}
+    .intro h1{font-size:32px;margin:0 0 8px}
+    .intro p{color:var(--muted);margin:0 0 16px}
+    .cta{display:flex;gap:12px}
+    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .avatar{width:100%;height:260px;background:linear-gradient(180deg,#0ea5a5,#06b6d4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:#022}
+
+    /* Sections */
+    section{margin-top:36px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* Skills */
+    .skill{margin-bottom:12px}
+    .skill .bar{height:10px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden}
+    .skill .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),#22d3ee);width:60%}
+
+    /* Projects grid */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .project{height:160px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:12px;position:relative;overflow:hidden}
+    .project h4{margin:0}
+    .tags{display:flex;gap:8px;margin-top:8px}
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
+
+    /* Contact */
+    .contact-form{display:grid;gap:12px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px;border-radius:8px;color:inherit}
+    textarea{min-height:110px}
+
+    footer{margin-top:40px;padding:20px 0;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .profile-card{order:-1}
+    }
+    @media (max-width:640px){
+      header{gap:8px}
+      nav ul{display:none}
+      .mobile-nav{display:flex}
+      .projects{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .space{height:18px}
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .space{height:18px}
+    #preloader{
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0,0,0,0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 7s ease, visibility 7s;
+  }
+  #preloader.hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .loader-wrap{
+    text-align: center;
+    color: #fff;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  .spinner{
+    width: 72px;
+    height: 72px;
+    display: block;
+    margin: 0 auto 12px;
+  }
+  .spinner .path{
+    stroke: #ffffff;
+    stroke-linecap: round;
+    stroke-dasharray: 90;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: spin 2.2s linear infinite, dash 2.4s ease-in-out infinite;
+  }
+  @keyframes spin{
+    100%{ transform: rotate(360deg); }
+  }
+  @keyframes dash{
+    0%{ stroke-dashoffset: 90; stroke-dasharray: 1,90; }
+    50%{ stroke-dashoffset: 25; stroke-dasharray: 60,30; }
+    100%{ stroke-dashoffset: 90; stroke-dasharray: 1,90; }
+  }
+  .loader-text{
+    font-size: 18px;
+    opacity: 0.95;
+  }
+  .mobile-nav {
+  display: none;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-nav {
+      display: block;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">
+            <img class="h-100 w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmcGX4WpT60SeDU-RnHwwGAhkDOBIi-l_pCw&s" alt="" srcset="">
+        </div>
+        <div>
+          <div style="font-weight:700">Sonu Panhiyar</div>
+          <div class="muted" style="font-size:12px"> C++ & Frontend Web Developer</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="muted">Home</a></li>
+          <li><a href="about.html" class="muted">About</a></li>
+          <li><a href="Skills.html" class="muted">Skills</a></li>
+          <li><a href="projects.html" class="muted">Projects</a></li>
+          <li><a href="contact.html" class="muted">Contact</a></li>
+          <li><a class="btn text-light" href="resume.pdf">Resume</a></li>
+        </ul>
+        <div class="mobile-nav">
+          <button class="btn btn-light" id="navToggle">Menu</button>
+        </div>
+      </nav>
+    </header>
+    <section id="about">
+        <h2>About</h2>
+        <div class="card">
+          <p class="muted">I’m a web developer who focuses on lightweight, accessible front-ends. I also experiment with compiling C++ to WebAssembly for performance-critical tasks. I build single-page apps, small games, and UI components that are easy to maintain.</p>
+        </div>
+  </section>
+  </div>
+  <script>
+     const navToggle = document.getElementById('navToggle');
+    if(navToggle){
+      navToggle.addEventListener('click',()=>{
+        const ul = document.querySelector('nav ul');
+        if(ul.style.display === 'flex') ul.style.display = 'none'; else ul.style.display = 'flex';
+        ul.style.flexDirection = 'column';
+      });
+    }
+      (function(){
+    const pre = document.getElementById('preloader');
+    function hidePreloader(){
+      if(!pre) return;
+      pre.classList.add('hidden');
+      // optional: remove from DOM after animation completes
+      setTimeout(()=> pre.remove(), 1000);
+    }
+    window.addEventListener('load', hidePreloader);
+    // Fallback: if load hangs, hide anyway after 8s
+    setTimeout(()=> {
+      if(pre && !pre.classList.contains('hidden')) hidePreloader();
+    }, 8000);
+   })();
+    </script>
+</body>     
