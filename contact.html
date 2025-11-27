@@ -145,6 +145,69 @@
       display: block;
     }
   }
+   
+  header {
+    display: flex;
+    flex-direction: column;  /*👇 نیچے آنے کی اصل لائن */
+    gap: 10px;
+    
+}
+
+
+
+.logo {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.role {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Navigation below profile */
+.main-nav ul {
+    display: flex;
+    gap: 25px;
+    margin-top: 10px;   /*👇 Web Developer کے نیچے space */
+    list-style: none;
+}
+
+.main-nav a {
+    text-decoration: none;
+}
+
+/* Mobile button hidden on desktop */
+.mobile-nav {
+    display: none;
+}
+
+/* Show on mobile */
+  @media (max-width: 768px) {
+    .main-nav ul {
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 15px;
+    }
+
+    
+    .mobile-nav {
+        display: block;
+        position: absolute;
+        top: 35px;
+        right: 10px;
+    }
+      .main-nav ul.show {
+        display: flex;
+      }
+  }
   </style>
 </head>
 <body>
@@ -167,10 +230,10 @@
                 <li><a href="Skills.html" class="muted">Skills</a></li>
                 <li><a href="projects.html" class="muted">Projects</a></li>
                 <li><a href="contact.html" class="muted">Contact</a></li>
-                <li><a class="btn text-light" href="resume.pdf">Resume</a></li>
+                <li><a class="btn btn-dark text-light" href="resume.pdf">Resume</a></li>
                 </ul>
                 <div class="mobile-nav">
-                <button class="btn btn-light" id="navToggle">Menu</button>
+                <button class="btn btn-dark text-light" id="navToggle">☰</button>
                 </div>
             </nav>
         </header>
@@ -190,12 +253,13 @@
 
     </div>
     <script>
-      const navToggle = document.getElementById('navToggle');
+       const navToggle = document.getElementById('navToggle');
     if(navToggle){
       navToggle.addEventListener('click',()=>{
         const ul = document.querySelector('nav ul');
-        if(ul.style.display === 'flex') ul.style.display = 'none'; else ul.style.display = 'flex';
-        ul.style.flexDirection = 'column';
+        if(ul.style.display === 'flex') ul.style.display = ''; else ul.style.display = 'flex';
+        ul.style.flexDirection = 'row';
+        ul.classList.toggle('show'); 
       });
     }
       (function(){

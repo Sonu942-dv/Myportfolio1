@@ -134,15 +134,68 @@
     font-size: 18px;
     opacity: 0.95;
   }
-  .mobile-nav {
-  display: none;
+  
+  header {
+    display: flex;
+    flex-direction: column;  /*👇 نیچے آنے کی اصل لائن */
+    gap: 10px;
+    
+}
+
+
+
+.logo {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.role {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Navigation below profile */
+.main-nav ul {
+    display: flex;
+    gap: 25px;
+    margin-top: 10px;   /*👇 Web Developer کے نیچے space */
+    list-style: none;
+}
+
+.main-nav a {
+    text-decoration: none;
+}
+
+/* Mobile button hidden on desktop */
+.mobile-nav {
+    display: none;
+}
+
+/* Show on mobile */
+  @media (max-width: 768px) {
+    .main-nav ul {
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 15px;
+    }
+
+    
+    .mobile-nav {
+        display: block;
+        position: absolute;
+        top: 35px;
+        right: 10px;
+    }
+      
   }
 
-  @media (max-width: 768px) {
-    .mobile-nav {
-      display: block;
-    }
-  }
   </style>
 </head>
 <body>
@@ -157,22 +210,22 @@
           <div class="muted" style="font-size:12px"> C++ & Frontend Web Developer</div>
         </div>
       </div>
-      <nav>
+      <nav class="mt-2">
         <ul>
           <li><a href="index.html" class="muted">Home</a></li>
           <li><a href="about.html" class="muted">About</a></li>
           <li><a href="Skills.html" class="muted">Skills</a></li>
           <li><a href="projects.html" class="muted">Projects</a></li>
           <li><a href="contact.html" class="muted">Contact</a></li>
-          <li><a class="btn text-light" href="resume.pdf">Resume</a></li>
+          <li><a class="btn btn-dark text-light" href="resume.pdf">Resume</a></li>
         </ul>
         <div class="mobile-nav">
-          <button class="btn btn-light " id="navToggle">Menu</button>
+          <button class="btn btn-dark text-light" id="navToggle">☰</button>
         </div>
       </nav>
     </header>
-    <main>
-      <section class="hero">
+    <main >
+      <section class="hero ">
         <div class="intro">
           <p class="muted">Hi — I'm</p>
           <h1>Sonu Panhiyar</h1>
@@ -182,7 +235,7 @@
             <a class="btn text-light" href="mailto:you@example.com">Email me</a>
           </div>   
         </div>
-        <aside class="profile-card shadow-lg">
+        <aside class="profile-card shadow-lg ">
           <div class="avatar">
             <img class="h-100 w-100 rounded" src="https://media-mct1-2.cdn.whatsapp.net/v/t61.24694-24/514310777_1069392032038359_4612435680419175037_n.jpg?ccb=11-4&oh=01_Q5Aa3AE5jBtQpjfeQ9NM2FEOsMv2vXa0qEvaiMwuQS16qxtZ6g&oe=6934FA09&_nc_sid=5e03e0&_nc_cat=100" alt="" srcset="">
           </div>
@@ -225,10 +278,13 @@
     if(navToggle){
       navToggle.addEventListener('click',()=>{
         const ul = document.querySelector('nav ul');
-        if(ul.style.display === 'flex') ul.style.display = 'none'; else ul.style.display = 'flex';
-        ul.style.flexDirection = 'column';
+        if(ul.style.display === 'flex') ul.style.display = ''; else ul.style.display = 'flex';
+        ul.style.flexDirection = 'row';
+        // ul.classList.toggle('show'); 
       });
     }
+
+
     (function(){
     const pre = document.getElementById('preloader');
     function hidePreloader(){
